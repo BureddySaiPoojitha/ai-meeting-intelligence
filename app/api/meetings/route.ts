@@ -9,9 +9,13 @@ export async function POST(req: Request) {
   // Simple AI-like extraction logic
   const lines = transcript.split("\n")
 
-  const tasks = lines
-    .filter(line => line.toLowerCase().includes("todo") || line.toLowerCase().includes("task") || line.toLowerCase().includes("action"))
-    .map((line, index) => ({
+ const tasks = lines
+  .filter((line: string) =>
+    line.toLowerCase().includes("todo") ||
+    line.toLowerCase().includes("task") ||
+    line.toLowerCase().includes("action")
+  )
+  .map((line: string, index: number) => ({
       id: index.toString(),
       title: line,
       owner: "Team",
